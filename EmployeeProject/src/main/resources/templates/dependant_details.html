@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employees List project</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div class = "container my-2" >
+   <H1> Employee Dependent details</H1>
+     <div>
+  <form action="#" th:action="@{/showNewDependantForm/{id}}" th:object="${dependant}"
+       method="POST">
+    <! -- <input type="hidden" th:field = "*{depid}"/> -->
+     <br>
+     <input type="hidden" th:field = "*{dep_id}"/>
+     <br>
+     <input type="text" th:field = "*{dep_name}" class="form control mb-4 col-4"/>
+     <br>
+     <input type="text" th:field = "*{dep_relation}" placeholder="relation" class="form control mb-4 col-4"/>
+     <br>
+</form >
+
+      <table border="1" class = "table table-striped table-responsive-md">
+         <thead>
+            <tr>
+               <th>Dep_id</th>
+               <th>Dep_name</th>
+               <th>Dep_relation</th>
+            </tr>
+         </thead>
+         <tbody>
+          <tr th:each="Dependant : ${dependant}">
+          <td th:text="${Dependant.id}"></td>  
+          <td th:text="${Dependant.name}"></td>
+          <td th:text="${Dependant.relation}"></td>  
+          </tr>
+         </tbody>
+      </table >
+      </div>
+</div>
+</body>
+</html >

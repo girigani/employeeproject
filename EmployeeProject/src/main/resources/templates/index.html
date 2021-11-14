@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employees List project</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div class = "container my-2" >
+   <H1> Employee List and Search</H1>
+     <div>
+      <form th:action="@{/Search}" method="GET">
+      <a th:href = "@{/showNewEmployeeForm}" class="btn btn-primary btn-sm mb-3"> Add Employee </a><br>
+       Filter: <input type="text" name="keyword" th:value="${keyword}"/>
+      <input type="submit" value="Search"/>
+      </form><br>
+     </div>
+     <div>
+      <table border="1" class = "table table-striped table-responsive-md">
+         <thead>
+            <tr>
+               <th>Emp id</th>
+               <th>Emp name</th>
+               <th>Emp Email</th>
+               <th>Emp age</th>
+               <th>Emp sal</th>
+               <th>actions</th>
+               <th>Dependant Details</th>
+            </tr>
+         </thead>
+         <tbody>
+          <tr th:each="Employee : ${listEmployees}">
+          <td th:text="${Employee.id}"></td>  
+          <td th:text="${Employee.name}"></td>
+          <td th:text="${Employee.email}"></td>  
+          <td th:text="${Employee.age}"></td>  
+          <td th:text="${Employee.sal}"></td>  
+          <td> <a th:href="@{/showFormForUpdate/{id}(id=${Employee.id})}" class="class=btn btn-primary btn-sm mb-3">Update</a>
+               <a th:href="@{/deleteEmployee/{id}(id=${Employee.id})}" class="class=btn btn-danger btn-sm mb-3">Delete</a>
+               
+          </td>
+          <td>
+          <a th:href="@{/showNewDependantForm/{id}(id=${Employee.id})}">Details</a>
+          <a th:href="@{/showNewDependantForm/{id}(id=${Employee.id})}" class="class=btn btn-primary btn-sm mb-3">Add</a>
+          <a th:href="@{/DependantEdit/{id}(id=${Employee.id})}" class="class=btn btn-primary btn-sm mb-3">Edit</a>
+          <a th:href="@{/DependantDelete/{id}(id=${Employee.id})}" class="class=btn btn-danger btn-sm mb-3">Delete</a>
+          </td>
+          </tr>
+         </tbody>
+      </table >
+      </div>
+</div>
+</body>
+</html >
